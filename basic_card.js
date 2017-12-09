@@ -7,7 +7,7 @@ var BasicCard =function(front,back){
 	  	this.front = front;
 	  	this.back = back;
 	  	
-	  	this.storeCard = function (front,back){
+	  	this.makeCard = function (front,back){
 			// this.cardFronts.push(front);
 			// this.cardBacks.push(back);
 			if(!front){

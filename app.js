@@ -15,7 +15,7 @@ inquirer
         type: "list",
         name: "operation",
         choices: ["make", "show", "nevermind"],
-        message: "What do you want to do?"
+        message: "What do you want to do human? Make a flashcard or show a flashcard?"
     }]).then(function (answer) {
         //if user chooses to make info call the function for that
         if (answer.operation === "make") {
@@ -26,7 +26,7 @@ inquirer
             readOperation();
         }
         else (answer.operation === "nevermind"); {
-            console.log("Then Leave.")
+            console.log("Kay Bye.")
         }
 
     });
@@ -49,7 +49,7 @@ var makeOperation = function () {
             makeCloze();
         }
         if (answer.operation === "nevermind") {
-           console.log("............ fine");
+           console.log("............ Fine");
             makeOperation();
         }
 
@@ -73,7 +73,7 @@ var readOperation = function () {
             readCloze();
         }
         if (answer.basicOrCloze === "nevermind") {
-            console.log(".....okay....")
+            console.log(".....Okay....")
             makeOperation();
         }
 
@@ -114,7 +114,7 @@ var makeCloze = function () {
         //prompt user to input partial text for cloze flashcards
         {
             type: "input",
-            name: "partial",
+            name: "text",
             message: "Enter your partial text"
         },
         //prompt user to input the deleted text for cloze flashcards
@@ -125,7 +125,7 @@ var makeCloze = function () {
         }
     ]).then(function (answer) {
         // pass values to a function that calls constructors from cloze_card.js file    
-        clozeFlashCard(answer.partial, answer.deletion);
+        clozeFlashCard(answer.text, answer.deletion);
 
     });
 }
@@ -134,18 +134,18 @@ var makeCloze = function () {
 var basicFlashCard = function (front, back) {
     var basicCard = new basic(front, back);
     basicCard.makeCard(front, back);
-    console.log('Here is what you wrote to the text file mortal. ' + "'" + basicCard.front + "'" + "on the front " + "and" + "'" + basicCard.back + "'" + "on the back.");
+    console.log('Here is what you wrote to the text file human. ' + "'" + basicCard.front + "'" + "on the front " + "and" + "'" + basicCard.back + "'" + "on the back.");
 
 }
 
 //function that passes values to constructor in cloze_card.js file
 var clozeFlashCard = function (text, deletion) {
     var clozeCard = new cloze(text, deletion);
-    clozeCard.fullText(text, deletion);
-    clozeCard.partialText(text);
+    clozeCard.fullText(text);
+    // clozeCard.partialText(text);
     clozeCard.deletion(deletion);
 
-    console.log('This is what you logged to the text file...... loser. ' + text + " " + deletion);
+    console.log('This is what you logged to the text file human. ' + text + " " + deletion);
 }
 
 //function that reads text file values using constructor in basic_card.js file
